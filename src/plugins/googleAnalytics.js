@@ -77,6 +77,30 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
 
         return d.promise;
       },
+      
+      trackTiming: function (category, intervalInMilliseconds, variable, value) {
+        var d = $q.defer();
+
+        $window.analytics.trackTiming(category, intervalInMilliseconds, variable, value, function (response) {
+          d.resolve(response);
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
+      },
+      
+      trackException: function (description, fatal) {
+        var d = $q.defer();
+
+        $window.analytics.trackTiming(description, fatal, function (response) {
+          d.resolve(response);
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
+      },
 
       addTransaction: function (transactionId, affiliation, revenue, tax, shipping, currencyCode) {
         var d = $q.defer();
