@@ -78,10 +78,10 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
         return d.promise;
       },
       
-      trackTiming: function (category, intervalInMilliseconds, variable, value) {
+      trackTiming: function (category, intervalInMilliseconds, name, label) {
         var d = $q.defer();
 
-        $window.analytics.trackTiming(category, intervalInMilliseconds, variable, value, function (response) {
+        $window.analytics.trackTiming(category, intervalInMilliseconds, name, label, function (response) {
           d.resolve(response);
         }, function (error) {
           d.reject(error);
